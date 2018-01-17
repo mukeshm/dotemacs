@@ -22,7 +22,7 @@
 ;; Line highlighting
 (global-hl-line-mode 1)
 ;; Word wrap is ugly
-;;(global-visual-line-mode 1)
+(global-visual-line-mode 1)
 
 ;; Cursor type
 (setq-default cursor-type '(bar . 2))
@@ -43,7 +43,10 @@
 (setq vc-make-backup-files t)
 
 ;; Start emacs with text-mode
-(setq initial-major-mode 'text-mode)
+(setq initial-major-mode 'org-mode)
+
+;; Empty *scratch* buffer
+(setq initial-scratch-message "")
 
 ;; Auto fill in text mode
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
@@ -92,5 +95,10 @@
 (add-to-list 'load-path "~/.emacs.d/libs/")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (load-theme 'solarized-dark t)
+
+;;(global-unset-key (kbd "<left>"))
+;;(galobal-unset-key (kbd "<right>"))
+;;(global-unset-key (kbd "<up>"))
+;;(global-unset-key (kbd "<down>"))
 
 ;; init.el ends here
