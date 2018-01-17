@@ -3,33 +3,35 @@
 ;; BASIC CUSTOMIZATION
 ;; --------------------------------------
 
-;; put emacs in fullscreen
+;; Put emacs in fullscreen
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
-;; hide the startup message
+;; Hide the startup message
 (setq inhibit-startup-message t)
 
-;; disable the menu-bar, tool-bar and scroll-bar
+;; Disable the menu-bar, tool-bar and scroll-bar
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
-;; highlight matching pairs of parentheses and other characters
+;; Highlight matching pairs of parentheses and other characters
 (show-paren-mode 1)
-;; enable line numbers globally
+;; Enable line numbers globally
 (global-linum-mode 1)
-;; insert matching delimiters
+;; Insert matching delimiters
 (electric-pair-mode 1)
-;; line highlighting
+;; Line highlighting
 (global-hl-line-mode 1)
-;; word wrap is ugly
-(global-visual-line-mode 1)
+;; Word wrap is ugly
+;;(global-visual-line-mode 1)
 
-;; cursor type
+;; Cursor type
 (setq-default cursor-type '(bar . 2))
-;; use spaces instead of tabs
+;; Don't blink the cursor
+(blink-cursor-mode -1)
+;; Use spaces instead of tabs
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
-;; remove trailing whitespace
+;; Remove trailing whitespace
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Write backup files to own directory
@@ -40,11 +42,53 @@
 ;; Make backups of files, even when they're in version control
 (setq vc-make-backup-files t)
 
+;; Start emacs with text-mode
+(setq initial-major-mode 'text-mode)
+
+;; Auto fill in text mode
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
+;; M-q should fill at 80 chars
+(setq-default fill-column 80)
+
+;; use custom font
+(set-frame-font "Source Code Pro-12")
+
+;; ido-mode
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+
+;; Delete selected region on inserting text
+(delete-selection-mode 1)
+
+;; Automatically reload files when they change on disk
+(global-auto-revert-mode 1)
+(setq auto-revert-verbose nil)
+
+;; Move custom configuration variables set by Emacs, to a seperate file
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file 'noerror)
+
+;; Use y/n instead of full yes/no for confirmation messages
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; Show full file path in the title bar
+(setq frame-title-format
+      '((:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name))
+                 "%b"))))
+
+;; Disable audio bell
+(setq ring-bell-function 'ignore)
+
+;; Scroll one line at a time
+(setq scroll-conservatively 10)
+
 ;; EXPERIMENTAL
 ;; -----------------------------------
 
-;; auto revert if file changed externally
-;; (global-auto-revert-mode 1)
+;; remove once installed through package manager
 (add-to-list 'load-path "~/.emacs.d/libs/")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (load-theme 'solarized-dark t)
