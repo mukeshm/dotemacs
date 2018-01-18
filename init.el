@@ -46,7 +46,7 @@
 (setq initial-major-mode 'org-mode)
 
 ;; Empty *scratch* buffer
-(setq initial-scratch-message "")
+(setq initial-scratch-message nil)
 
 ;; Auto fill in text mode
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
@@ -96,9 +96,31 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (load-theme 'solarized-dark t)
 
+(require 'org-bullets)
+(add-hook 'org-mode-hook 'org-bullets-mode)
+(setq org-bullets-bullet-list '("➔"))
+;;(setq org-ellipsis "⤵")
+(setq org-ellipsis " •••")
+;; syntax highlighting in source blocks
+(setq org-src-fontify-natively t)
+;; TAB acts wrt language’s major mode
+(setq org-src-tab-acts-natively t)
+;;(setq
+;; org-bullets-bullet-list
+;; '("☯" "☢" "➔" "☀" "♻" "✈" "⚡" "➫" "✪" "✿" "❀" "♥" "●" "◆" "♠" "♣" "♦" "◇" "✚" "✜" "▶"))
+(add-hook 'org-mode-hook (lambda () (linum-mode -1)))
+
 ;;(global-unset-key (kbd "<left>"))
 ;;(galobal-unset-key (kbd "<right>"))
 ;;(global-unset-key (kbd "<up>"))
 ;;(global-unset-key (kbd "<down>"))
+;;(global-unset-key (kbd "<C-left>"))
+;;(global-unset-key (kbd "<C-right>"))
+;;(global-unset-key (kbd "<C-up>"))
+;;(global-unset-key (kbd "<C-down>"))
+;;(global-unset-key (kbd "<M-left>"))
+;;(global-unset-key (kbd "<M-right>"))
+;;(global-unset-key (kbd "<M-up>"))
+;;(global-unset-key (kbd "<M-down>"))
 
 ;; init.el ends here
