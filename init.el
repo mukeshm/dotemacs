@@ -1,5 +1,13 @@
 ;; init.el --- Emacs configuration
 
+;; INSTALLATION
+;; --------------------------------------
+
+;;(require 'package)
+;;(setq package-enable-at-startup nil)
+;;(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+;;(package-initialize)
+
 ;; BASIC CUSTOMIZATION
 ;; --------------------------------------
 
@@ -96,6 +104,9 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (load-theme 'solarized-dark t)
 
+(require 'undo-tree)
+(global-undo-tree-mode)
+
 (require 'org-bullets)
 (add-hook 'org-mode-hook 'org-bullets-mode)
 (setq org-bullets-bullet-list '("➔"))
@@ -123,4 +134,9 @@
 ;;(global-unset-key (kbd "<M-up>"))
 ;;(global-unset-key (kbd "<M-down>"))
 
+;;(global-set-key (kbd "M-o") 'other-window)
+;;(winner-mode)
+;;undo and redo with C-c <left> and C-c <right>
+;;(windmove-default-keybindings)
+;;switch windows with  S-<left>, S-<right>, S-<up>, S-<down>
 ;; init.el ends here
